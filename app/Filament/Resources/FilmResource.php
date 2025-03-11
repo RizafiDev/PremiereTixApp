@@ -70,7 +70,7 @@ class FilmResource extends Resource
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\ImageColumn::make('photo')->width(80)->height(130),
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description')->limit(50),
+                Tables\Columns\TextColumn::make('description')->limit(20),
                 Tables\Columns\TextColumn::make('release_date'),
                 Tables\Columns\TextColumn::make('rating')->badge()->color('danger'),
                 Tables\Columns\TextColumn::make('country'),
