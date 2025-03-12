@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
 
 class FilmResource extends Resource
 {
@@ -96,7 +97,8 @@ class FilmResource extends Resource
                 ->sortable(),
             ])
             ->filters([
-                //
+                Filter::make('playing')
+                ->query(fn (Builder $query): Builder => $query->where('playing', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -108,6 +110,8 @@ class FilmResource extends Resource
                 ]),
             ]);
     }
+
+    
 
     public static function getRelations(): array
     {
