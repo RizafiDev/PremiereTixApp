@@ -51,14 +51,14 @@ class FilmResource extends Resource
     ->searchable() // Bisa mencari genre
     ->preload() // Memuat semua opsi langsung
     ->required(),
-    
-           
-
             Forms\Components\FileUpload::make('photo')
                 ->image()
                 ->label('Poster')
                 ->required()
                 ->disk('public'),
+                Forms\Components\Toggle::make('playing')
+                ->label('Active')
+                ->default(true),
         ]);
 }
 
@@ -67,17 +67,33 @@ class FilmResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\ImageColumn::make('photo')->width(80)->height(130),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description')->limit(20),
-                Tables\Columns\TextColumn::make('release_date'),
-                Tables\Columns\TextColumn::make('rating')->badge()->color('danger'),
-                Tables\Columns\TextColumn::make('country'),
-                Tables\Columns\TextColumn::make('genres.genre')
+                Tables\Columns\TextColumn::make('id')
+                ->searchable()
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\ImageColumn::make('photo')->width(80)->height(130)->disabledClick(),
+                Tables\Columns\TextColumn::make('title')->searchable()
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\TextColumn::make('description')->limit(20)->disabledClick(),
+                Tables\Columns\TextColumn::make('release_date')
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\TextColumn::make('rating')->badge()->color('danger')
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\TextColumn::make('country')->searchable()
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\TextColumn::make('genres.genre')->searchable()
+                ->disabledClick()
+                ->sortable()
     ->label('Genres')
     ->badge()
     ->separator(', '), // Menampilkan banyak genre dalam satu kolom
+                Tables\Columns\ToggleColumn::make('playing')
+                ->label('Playing')
+                ->sortable(),
             ])
             ->filters([
                 //

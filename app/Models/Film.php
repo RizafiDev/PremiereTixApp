@@ -10,7 +10,7 @@ class Film extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'release_date', 'rating', 'country', 'genre', 'photo'
+        'title', 'description', 'release_date', 'rating', 'country', 'genre', 'photo', 'playing'
     ];
 
     protected $casts = [

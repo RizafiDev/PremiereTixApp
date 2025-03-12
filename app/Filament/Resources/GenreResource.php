@@ -32,9 +32,11 @@ class GenreResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('genre'),
-                Tables\Columns\ColorColumn::make('color')->width('40px'),
+                Tables\Columns\TextColumn::make('genre')
+                ->searchable()
+                ->disabledClick()
+                ->sortable(),
+                Tables\Columns\ColorColumn::make('color')->width('40px')->disabledClick(),
             ])
             ->filters([
                 //

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CouponResource\Pages;
-use App\Filament\Resources\CouponResource\RelationManagers;
-use App\Models\Coupon;
+use App\Filament\Resources\AppUserResource\Pages;
+use App\Filament\Resources\AppUserResource\RelationManagers;
+use App\Models\AppUser;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,32 +13,28 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CouponResource extends Resource
+class AppUserResource extends Resource
 {
-    protected static ?string $model = Coupon::class;
+    protected static ?string $model = AppUser::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('code')
-                    ->label('Code')
-                    ->required()
-                    ->unique('coupons', 'code'),
-
-                Forms\Components\TextInput::make('discount')
-                    ->label('Discount')
-                    ->type('number')
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
                     ->required(),
 
-                Forms\Components\Toggle::make('is_active')
-                ->label('Active')
-                ->default(true),
+                Forms\Components\TextInput::make('email')
+                    ->label('Email')
+                    ->email()
+                    ->required(),
 
-                Forms\Components\DateTimePicker::make('expired_at')
-                    ->label('Expired At')
+                Forms\Components\TextInput::make('password')
+                    ->label('Password')
+                    ->password()
                     ->required(),
             ]);
     }
@@ -47,32 +43,31 @@ class CouponResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('code')
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->disabledClick()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->disabledClick()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('discount')
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->disabledClick()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
                     ->searchable()
                     ->disabledClick()
                     ->sortable(),
 
-                Tables\Columns\ToggleColumn::make('is_active')
-                    ->label('Active')
-                    ->disabledClick()
-                    ->sortable(),
-
-                Tables\Columns\TextColumn::make('expired_at')
-                    ->searchable()
-                    ->disabledClick()
-                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -91,9 +86,9 @@ class CouponResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCoupons::route('/'),
-            'create' => Pages\CreateCoupon::route('/create'),
-            'edit' => Pages\EditCoupon::route('/{record}/edit'),
+            'index' => Pages\ListAppUsers::route('/'),
+            'create' => Pages\CreateAppUser::route('/create'),
+            'edit' => Pages\EditAppUser::route('/{record}/edit'),
         ];
     }
 }
