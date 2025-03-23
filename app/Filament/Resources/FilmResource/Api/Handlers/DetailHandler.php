@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\FilmResource\Api\Handlers;
 
-use App\Filament\Resources\SettingResource;
 use App\Filament\Resources\FilmResource;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -14,9 +13,10 @@ class DetailHandler extends Handlers
     public static string | null $uri = '/{id}';
     public static string | null $resource = FilmResource::class;
 
+    public static bool $public = true;
 
     /**
-     * Show Film
+     * Show Film with Genres
      *
      * @param Request $request
      * @return FilmTransformer
@@ -30,6 +30,7 @@ class DetailHandler extends Handlers
         $query = QueryBuilder::for(
             $query->where(static::getKeyName(), $id)
         )
+            ->with('genres') // Tambahkan relasi genres
             ->first();
 
         if (!$query) return static::sendNotFoundResponse();

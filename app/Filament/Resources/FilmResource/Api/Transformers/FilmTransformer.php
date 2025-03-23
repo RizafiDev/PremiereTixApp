@@ -9,7 +9,6 @@ use App\Models\Film;
  */
 class FilmTransformer extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -18,6 +17,22 @@ class FilmTransformer extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->resource->toArray();
+        return [
+            'id' => $this->resource->id,
+            'title' => $this->resource->title,
+            'description' => $this->resource->description,
+            'release_date' => $this->resource->release_date,
+            'rating' => $this->resource->rating,
+            'country' => $this->resource->country,
+            'photo' => $this->resource->photo,
+            'playing' => $this->resource->playing,
+            'genres' => $this->resource->genres->map(function ($genre) {
+                return [
+                    'id' => $genre->id,
+                    'name' => $genre->name,
+                    'color' => $genre->color,
+                ];
+            }),
+        ];
     }
 }

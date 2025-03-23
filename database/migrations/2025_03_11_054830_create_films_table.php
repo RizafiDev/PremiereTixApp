@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('release_date');
             $table->string('rating');
             $table->string('country');
-            $table->json('genre');
             $table->string('photo');
         });
     }
