@@ -32,6 +32,9 @@ class GenreResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                ->label("Genre ID")
+                ->disabledClick(),
                 Tables\Columns\TextColumn::make('genre')
                 ->searchable()
                 ->disabledClick()
