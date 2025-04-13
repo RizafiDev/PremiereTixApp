@@ -1,16 +1,14 @@
 <?php
-namespace App\Filament\Resources\SeatResource\Api\Handlers;
+namespace App\Filament\Resources\CinemaResource\Api\Handlers;
 
 use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
-use App\Filament\Resources\SeatResource;
-use App\Filament\Resources\SeatResource\Api\Requests\CreateSeatRequest;
+use App\Filament\Resources\CinemaResource;
+use App\Filament\Resources\CinemaResource\Api\Requests\CreateCinemaRequest;
 
 class CreateHandler extends Handlers {
     public static string | null $uri = '/';
-    public static string | null $resource = SeatResource::class;
-
-    public static bool $public = true;
+    public static string | null $resource = CinemaResource::class;
 
     public static function getMethod()
     {
@@ -22,12 +20,12 @@ class CreateHandler extends Handlers {
     }
 
     /**
-     * Create Seat
+     * Create Cinema
      *
-     * @param CreateSeatRequest $request
+     * @param CreateCinemaRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function handler(CreateSeatRequest $request)
+    public function handler(CreateCinemaRequest $request)
     {
         $model = new (static::getModel());
 

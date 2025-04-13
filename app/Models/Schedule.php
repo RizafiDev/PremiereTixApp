@@ -3,19 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Schedule extends Model
 {
-    protected $fillable = ['film_id', 'show_time', 'studio'];
+    protected $fillable = ['film_id', 'cinema_id', 'show_date', 'show_time', 'studio'];
 
-    public function film(): BelongsTo
+    public function film()
     {
         return $this->belongsTo(Film::class);
     }
 
-    public function seats(): HasMany
+    public function cinema()
+    {
+        return $this->belongsTo(Cinema::class);
+    }
+
+    public function seats()
     {
         return $this->hasMany(Seat::class);
     }

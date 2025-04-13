@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\SeatResource\Api\Handlers;
+namespace App\Filament\Resources\CinemaResource\Api\Handlers;
 
 use App\Filament\Resources\SettingResource;
-use App\Filament\Resources\SeatResource;
+use App\Filament\Resources\CinemaResource;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Http\Request;
-use App\Filament\Resources\SeatResource\Api\Transformers\SeatTransformer;
+use App\Filament\Resources\CinemaResource\Api\Transformers\CinemaTransformer;
 
 class DetailHandler extends Handlers
 {
     public static string | null $uri = '/{id}';
-    public static string | null $resource = SeatResource::class;
-
-    
+    public static string | null $resource = CinemaResource::class;
 
 
     /**
-     * Show Seat
+     * Show Cinema
      *
      * @param Request $request
-     * @return SeatTransformer
+     * @return CinemaTransformer
      */
     public function handler(Request $request)
     {
@@ -36,6 +34,6 @@ class DetailHandler extends Handlers
 
         if (!$query) return static::sendNotFoundResponse();
 
-        return new SeatTransformer($query);
+        return new CinemaTransformer($query);
     }
 }

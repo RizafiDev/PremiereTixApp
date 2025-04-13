@@ -1,19 +1,19 @@
 <?php
-namespace App\Filament\Resources\ScheduleResource\Api\Handlers;
+namespace App\Filament\Resources\CinemaResource\Api\Handlers;
 
 use Illuminate\Http\Request;
 use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
-use App\Filament\Resources\ScheduleResource;
-use App\Filament\Resources\ScheduleResource\Api\Transformers\ScheduleTransformer;
+use App\Filament\Resources\CinemaResource;
+use App\Filament\Resources\CinemaResource\Api\Transformers\CinemaTransformer;
 
 class PaginationHandler extends Handlers {
     public static string | null $uri = '/';
-    public static string | null $resource = ScheduleResource::class;
+    public static string | null $resource = CinemaResource::class;
 
     public static bool $public = true;
     /**
-     * List of Schedule
+     * List of Cinema
      *
      * @param Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -30,6 +30,6 @@ class PaginationHandler extends Handlers {
         ->paginate(request()->query('per_page'))
         ->appends(request()->query());
 
-        return ScheduleTransformer::collection($query);
+        return CinemaTransformer::collection($query);
     }
 }

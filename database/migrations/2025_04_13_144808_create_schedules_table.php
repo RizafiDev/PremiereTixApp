@@ -10,10 +10,12 @@ return new class extends Migration {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('film_id')->constrained()->onDelete('cascade');
-            $table->dateTime('show_time');
-            $table->string('studio')->nullable();
+            $table->foreignId('cinema_id')->constrained()->onDelete('cascade');
+            $table->date('show_date'); // tanggal tayang
+            $table->time('show_time'); // jam tayang
+            $table->integer('studio'); // studio tempat tayang
             $table->timestamps();
-        });
+        });        
     }
 
     public function down(): void
