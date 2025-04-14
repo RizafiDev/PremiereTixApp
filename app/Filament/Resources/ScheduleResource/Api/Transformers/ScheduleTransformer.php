@@ -18,6 +18,19 @@ class ScheduleTransformer extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->resource->toArray();
+        return [
+            'id' => $this->id,
+            'film_id' => $this->film_id,
+            'cinema_id' => $this->cinema_id,
+            'show_date' => $this->show_date,
+            'show_time' => $this->show_time,
+            'studio' => $this->studio,
+            'price' => $this->price,
+            'cinema' => [
+                'id' => $this->cinema->id ?? null,
+                'name' => $this->cinema->name ?? null,
+                'address' => $this->cinema->address ?? null,
+            ]
+            ];
     }
 }

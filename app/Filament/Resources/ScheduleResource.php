@@ -40,6 +40,10 @@ class ScheduleResource extends Resource
             Forms\Components\TextInput::make('studio')
                 ->label('Studio')
                 ->required(),
+            Forms\Components\TextInput::make('price')
+                ->label('Price')
+                ->required(),
+                
         ]);
     }
 
@@ -73,6 +77,11 @@ class ScheduleResource extends Resource
             Tables\Columns\TextColumn::make('studio')
                 ->label('Studio')
                 ->sortable(),
+            Tables\Columns\TextColumn::make('price')
+                ->label('Price')
+                ->sortable()
+                ->money('idr', true)
+                ->formatStateUsing(fn ($state) => number_format($state, 0, ',', '.')),
         ])
         ->filters([
             //
