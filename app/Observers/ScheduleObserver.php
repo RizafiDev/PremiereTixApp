@@ -12,8 +12,8 @@ class ScheduleObserver
      */
     public function created(Schedule $schedule): void
     {
-        $rows = ['A', 'B', 'C', 'D', 'E'];
-        $columns = range(1, 10); // 10 kursi per baris
+        $rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M' ,'N']; // 10 baris
+        $columns = range(1, 19); // 10 kursi per baris
 
         foreach ($rows as $row) {
             foreach ($columns as $col) {
