@@ -22,4 +22,11 @@ class Schedule extends Model
     {
         return $this->hasMany(Seat::class);
     }
+
+    // Di model Schedule
+public function getLabelAttribute()
+{
+    return $this->film->title . ' - ' . $this->show_date . ' ' . $this->show_time;
+}
+
 }
