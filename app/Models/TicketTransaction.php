@@ -15,6 +15,8 @@ class TicketTransaction extends Model
         'gross_amount',
         'status',
         'snap_token',
+        'payment_data',
+
     ];
 
     protected $casts = [
