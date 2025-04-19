@@ -35,8 +35,14 @@ class TicketTransactionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('order_id')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('user.name')->label('Customer')->sortable(),
+                Tables\Columns\TextColumn::make('appuser.name')->label('Customer')->sortable(),
+                Tables\Columns\TextColumn::make('appuser.email')->label('Email')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('seats')->label('Seat')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('schedule.id')->label('Schedule'),
+                Tables\Columns\TextColumn::make('schedule.film.title')->label('Film')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('schedule.cinema.name')->label('Cinema')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('schedule.show_date')->label('Show Date')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('schedule.show_time')->label('Show Time')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('gross_amount')->label('Amount')->money('IDR'),
                 Tables\Columns\TextColumn::make('status')->badge()->color(fn (string $state): string => match ($state) {
                     'success' => 'success',

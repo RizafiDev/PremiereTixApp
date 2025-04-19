@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ticket_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('order_id')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('appuser_id');
             $table->unsignedBigInteger('schedule_id');
             $table->json('seats'); // array of seat_code
             $table->integer('gross_amount'); // total price
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Relasi
-            $table->foreign('user_id')->references('id')->on('app_users')->onDelete('cascade');
+            $table->foreign('appuser_id')->references('id')->on('app_users')->onDelete('cascade');
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
         });
     }

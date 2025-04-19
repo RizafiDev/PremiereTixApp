@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class SeatResource extends Resource
 {
@@ -19,25 +20,7 @@ class SeatResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Select::make('schedule_id')
-                ->label('Schedule')
-                ->relationship('schedule', 'id')
-                ->required(),
-
-            Forms\Components\TextInput::make('seat_code')
-                ->label('Seat Code')
-                ->required()
-                ->maxLength(10),
-
-            Forms\Components\Toggle::make('is_booked')
-                ->label('Is Booked')
-                ->default(false),
-
-            Forms\Components\Select::make('booked_by')
-                ->label('Booked By')
-                ->relationship('user', 'name')
-                ->searchable()
-                ->nullable(),
+           //
         ]);
     }
 
@@ -56,13 +39,12 @@ class SeatResource extends Resource
                 ->label('Booked')
                 ->boolean(),
 
-            Tables\Columns\TextColumn::make('user.name')
-                ->label('Booked By')
-                ->sortable()
-                ->searchable(),
         ])
         ->filters([
-            //
+            Tables\Filters\Filter::make('booked')
+            ->label('Booked')
+            ->query(fn (Builder $query) => $query->where('is_booked', true)),
+
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

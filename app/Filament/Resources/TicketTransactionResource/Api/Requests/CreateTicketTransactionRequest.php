@@ -23,12 +23,12 @@ class CreateTicketTransactionRequest extends FormRequest
     {
         return [
 			'order_id' => 'required|string',
-			'user_id' => 'required|integer',
+			'appuser_id' => 'required|integer',
 			'schedule_id' => 'required|integer',
 			'seats' => 'required',
 			'gross_amount' => 'required|integer',
 			'status' => 'required',
-			'snap_token' => 'required|string'
+			'snap_token' => 'nullable|string'
 		];
     }
 }

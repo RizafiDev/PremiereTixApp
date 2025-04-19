@@ -23,12 +23,11 @@ class PaginationHandler extends Handlers {
         $query = static::getEloquentQuery();
 
         $query = QueryBuilder::for($query)
-        ->allowedFields($this->getAllowedFields() ?? [])
-        ->allowedSorts($this->getAllowedSorts() ?? [])
-        ->allowedFilters($this->getAllowedFilters() ?? [])
-        ->allowedIncludes($this->getAllowedIncludes() ?? [])
-        ->paginate(request()->query('per_page'))
-        ->appends(request()->query());
+            ->allowedFields($this->getAllowedFields() ?? [])
+            ->allowedSorts($this->getAllowedSorts() ?? [])
+            ->allowedFilters($this->getAllowedFilters() ?? [])
+            ->allowedIncludes($this->getAllowedIncludes() ?? [])
+            ->get(); // Mengambil semua data tanpa paginasi
 
         return SeatTransformer::collection($query);
     }

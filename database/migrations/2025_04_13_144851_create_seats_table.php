@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->foreignId('schedule_id')->constrained()->onDelete('cascade');
             $table->string('seat_code'); // contoh: A1, B2, dll
             $table->boolean('is_booked')->default(false);
-            $table->foreignId('booked_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

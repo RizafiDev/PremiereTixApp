@@ -8,7 +8,7 @@ use App\Filament\Resources\SeatResource;
 class DeleteHandler extends Handlers {
     public static string | null $uri = '/{id}';
     public static string | null $resource = SeatResource::class;
-
+    public static bool $public = true;
     public static function getMethod()
     {
         return Handlers::DELETE;

@@ -9,7 +9,7 @@ class TicketTransaction extends Model
 {
     protected $fillable = [
         'order_id',
-        'user_id',
+        'appuser_id',
         'schedule_id',
         'seats',
         'gross_amount',
@@ -21,7 +21,7 @@ class TicketTransaction extends Model
         'seats' => 'array', // akan menyimpan array of seat_code
     ];
 
-    public function user(): BelongsTo
+    public function appuser(): BelongsTo
     {
         return $this->belongsTo(AppUser::class);
     }
@@ -29,5 +29,9 @@ class TicketTransaction extends Model
     public function schedule(): BelongsTo
     {
         return $this->belongsTo(Schedule::class);
+    }
+    public function films(): BelongsTo
+    {
+        return $this->belongsTo(Film::class);
     }
 }

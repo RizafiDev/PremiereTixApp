@@ -25,7 +25,6 @@ class CreateSeatRequest extends FormRequest
 			'schedule_id' => 'required|integer',
 			'seat_code' => 'required|string',
 			'is_booked' => 'required|integer',
-			'booked_by' => 'required|integer'
 		];
     }
 }

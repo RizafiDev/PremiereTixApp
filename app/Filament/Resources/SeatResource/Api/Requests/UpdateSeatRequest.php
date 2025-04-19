@@ -19,13 +19,12 @@ class UpdateSeatRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-			'schedule_id' => 'required|integer',
-			'seat_code' => 'required|string',
-			'is_booked' => 'required|integer',
-			'booked_by' => 'required|integer'
-		];
+            'schedule_id' => 'required|exists:schedules,id',
+            'seat_code' => 'required|string', // Validasi seat_code
+            'is_booked' => 'required|boolean',
+        ];
     }
 }

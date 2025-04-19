@@ -21,7 +21,6 @@ class ScheduleObserver
                     'schedule_id' => $schedule->id,
                     'seat_code' => $row . $col,
                     'is_booked' => false,
-                    'booked_by' => null,
                 ]);
             }
         }
