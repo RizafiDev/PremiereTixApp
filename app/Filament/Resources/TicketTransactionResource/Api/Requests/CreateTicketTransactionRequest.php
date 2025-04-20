@@ -28,7 +28,8 @@ class CreateTicketTransactionRequest extends FormRequest
 			'seats' => 'required',
 			'gross_amount' => 'required|integer',
 			'status' => 'required',
-			'snap_token' => 'nullable|string'
+			'snap_token' => 'nullable|string',
+            'expires_at' => 'nullable|date',
 		];
     }
 }

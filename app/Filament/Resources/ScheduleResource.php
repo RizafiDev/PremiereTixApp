@@ -82,6 +82,7 @@ class ScheduleResource extends Resource
                 ->sortable()
                 ->money('idr', true)
                 ->formatStateUsing(fn ($state) => number_format($state, 0, ',', '.')),
+            Tables\Columns\TextColumn::make('created_at')
         ])
         ->filters([
             //

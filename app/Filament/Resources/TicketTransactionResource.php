@@ -50,6 +50,8 @@ class TicketTransactionResource extends Resource
                     'failed', 'expired' => 'danger',
                 }),
                 Tables\Columns\TextColumn::make('created_at')->label('Created')->dateTime(),
+                Tables\Columns\TextColumn::make('expires_at')->label('Expired'),
+
             ])
             ->filters([
                 //
