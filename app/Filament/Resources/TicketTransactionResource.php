@@ -14,6 +14,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
+
 
 class TicketTransactionResource extends Resource
 {
@@ -56,7 +58,12 @@ class TicketTransactionResource extends Resource
                 ->disk('public')
                 ->visibility('public')
                 ->width(100)
-                ->height(100),
+                ->height(100)
+                ->url(fn ($record) => Storage::disk('public')->url($record->qr_code_path))
+                ->openUrlInNewTab(false)
+                ->extraAttributes([
+                    'download' => '', // agar browser download otomatis
+                ]),
             
             ])
             ->filters([

@@ -20,12 +20,13 @@ class QRCodeService
 
         $qrData = json_encode([
             'order_id' => $transaction->order_id,
-            'customer' => $transaction->appuser->name ?? 'Unknown',
             'film' => $transaction->schedule->film->title ?? 'Unknown',
             'cinema' => $transaction->schedule->cinema->name ?? 'Unknown',
             'date' => $transaction->schedule->show_date ?? 'Unknown',
             'time' => $transaction->schedule->show_time ?? 'Unknown',
-            'seats' => $transaction->seats,
+            'seats' => $transaction->seats ?? 'Unknown',
+            'price' => $transaction->gross_amount ?? 'Unknown',
+            'studio' => $transaction->schedule->cinema->studio ?? 'Unknown',
             'transaction_id' => $transaction->id,
         ]);
 
