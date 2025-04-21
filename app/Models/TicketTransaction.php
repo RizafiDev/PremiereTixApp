@@ -17,6 +17,7 @@ class TicketTransaction extends Model
         'snap_token',
         'payment_data',
         'expires_at',
+        'qr_code_path',
 
     ];
 

@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Schedule;
-use App\Observers\ScheduleObserver;
+use App\Observers\ScheduleObserver; 
+use App\Models\TicketTransaction;
+use App\Observers\TicketTransactionObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schedule::observe(ScheduleObserver::class);
+        TicketTransaction::observe(TicketTransactionObserver::class);
     }
 }

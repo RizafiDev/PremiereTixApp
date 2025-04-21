@@ -51,7 +51,13 @@ class TicketTransactionResource extends Resource
                 }),
                 Tables\Columns\TextColumn::make('created_at')->label('Created')->dateTime(),
                 Tables\Columns\TextColumn::make('expires_at')->label('Expired'),
-
+                Tables\Columns\ImageColumn::make('qr_code_path')
+                ->label('QR Code')
+                ->disk('public')
+                ->visibility('public')
+                ->width(100)
+                ->height(100),
+            
             ])
             ->filters([
                 //
