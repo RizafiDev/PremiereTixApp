@@ -23,6 +23,21 @@ class CouponResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\FileUpload::make('coupon_banner_path')
+                ->label('Banner')
+                ->image()
+                ->disk('public')
+                ->visibility('public'),
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->maxLength(65535),
+                Forms\Components\TextInput::make('snk')
+                    ->label('SNK')
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('code')
                     ->label('Code')
                     ->required()
@@ -47,11 +62,28 @@ class CouponResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->searchable()
+                    ->disabledClick(),
+                Tables\Columns\ImageColumn::make('coupon_banner_path'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->disabledClick()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('code')
                     ->searchable()
                     ->disabledClick()
                     ->sortable(),
-
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable()
+                    ->disabledClick()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('snk')
+                    ->searchable()
+                    ->disabledClick()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('discount')
                     ->searchable()
                     ->disabledClick()
