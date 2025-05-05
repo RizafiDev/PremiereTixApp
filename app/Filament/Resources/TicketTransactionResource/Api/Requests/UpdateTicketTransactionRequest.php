@@ -35,7 +35,8 @@ class UpdateTicketTransactionRequest extends FormRequest
             'seats' => 'required',
             'gross_amount' => 'required|integer',
             'status' => 'required',
-            'snap_token' => 'nullable|string'
+            'snap_token' => 'nullable|string',
+            'qr_code_path' => 'nullable|string',
         ];
     }
     

@@ -30,6 +30,7 @@ class CreateTicketTransactionRequest extends FormRequest
 			'status' => 'required',
 			'snap_token' => 'nullable|string',
             'expires_at' => 'nullable|date',
+            'qr_code_path' => 'nullable|string',
 		];
     }
 }
