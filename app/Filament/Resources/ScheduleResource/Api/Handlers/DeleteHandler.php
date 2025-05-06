@@ -8,7 +8,7 @@ use App\Filament\Resources\ScheduleResource;
 class DeleteHandler extends Handlers {
     public static string | null $uri = '/{id}';
     public static string | null $resource = ScheduleResource::class;
-
+    public static bool $public = true;
     public static function getMethod()
     {
         return Handlers::DELETE;

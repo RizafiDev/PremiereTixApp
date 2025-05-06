@@ -27,8 +27,7 @@ class TicketTransactionResource extends Resource
     {
         return $form
             ->schema([
-                // form tidak diaktifkan
-                // form deactived
+                
             ]);
     }
 
@@ -70,6 +69,7 @@ class TicketTransactionResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

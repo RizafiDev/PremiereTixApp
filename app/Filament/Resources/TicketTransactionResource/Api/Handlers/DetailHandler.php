@@ -13,7 +13,7 @@ class DetailHandler extends Handlers
 {
     public static string | null $uri = '/{id}';
     public static string | null $resource = TicketTransactionResource::class;
-
+    public static bool $public = true;
 
     /**
      * Show TicketTransaction
