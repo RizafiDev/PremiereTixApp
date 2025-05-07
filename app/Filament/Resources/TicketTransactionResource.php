@@ -27,7 +27,7 @@ class TicketTransactionResource extends Resource
     {
         return $form
             ->schema([
-                
+
             ]);
     }
 
